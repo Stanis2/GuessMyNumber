@@ -1,5 +1,6 @@
 package tsi.stanislaw.gmn;
 
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,12 +12,11 @@ public class Main {
         int myNum = rand.nextInt(100) + 1;
         System.out.println(myNum);
         boolean userLost = true;
-        boolean userText = true;
+        boolean userYes = false;
 
         for (int i = 1; i < 11; i++) {
             System.out.println("Попытка #" + i);
             int userNum = scan.nextInt();
-            //String userText = scan.next();
 
             if (userNum > myNum) {
                 System.out.println("Много");
@@ -26,11 +26,19 @@ public class Main {
                 System.out.println("Угадал");
                 userLost = false;
                 System.out.println("Играть еще раз?");
+                userYes = false;
             }
         }
 
         if (userLost) {
-            System.out.println("Попробуй еще раз");
+            System.out.println("Попробовать еще раз?");
+            userYes = true;
+        }
+
+        if (userYes) {
+            System.exit(1);
+        } else {
+            System.exit(0);
         }
     }
 }
