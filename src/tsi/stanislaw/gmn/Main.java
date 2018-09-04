@@ -18,7 +18,6 @@ public class Main {
         } else if (answer.equals("Yes")) {
 
             do {
-
                 int myNum = rand.nextInt(100) + 1;
                 System.out.println(myNum);
                 boolean userLost = true;
@@ -49,7 +48,6 @@ public class Main {
                     System.out.println("Play again?");
                     answer = ask();
                 }
-
             } while (answer.equals("Yes"));
         }
     }
