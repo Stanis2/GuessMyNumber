@@ -5,13 +5,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    static Random rand = new Random();
-    static Scanner scan = new Scanner(System.in);
+    private static Random rand = new Random();
+    private static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         System.out.println("Start a new game?");
-        String answer = ask();
+        String answer = askAns();
 
         if (answer.equals("No")) {
             System.exit(0);
@@ -24,7 +24,7 @@ public class Main {
                 boolean userWin = false;
 
                 for (int i = 1; i < 11; i++) {
-                    System.out.println("Попытка #" + i);
+                    System.out.println("Attempt #" + i);
                     int userNum = askNum();
 
                     if (userNum > myNum) {
@@ -41,18 +41,18 @@ public class Main {
 
                 if (userLost) {
                     System.out.println("Try again?");
-                    answer = ask();
+                    answer = askAns();
                 }
 
                 if (userWin) {
                     System.out.println("Play again?");
-                    answer = ask();
+                    answer = askAns();
                 }
             } while (answer.equals("Yes"));
         }
     }
 
-    static String ask() {
+    private static String askAns() {
         String answer;
         do {
             System.out.println("Yes or No");
@@ -61,7 +61,7 @@ public class Main {
         return answer;
     }
 
-    static int askNum() {
+    private static int askNum() {
         int answer;
         do {
             try {
