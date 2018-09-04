@@ -1,5 +1,6 @@
 package tsi.stanislaw.gmn;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,12 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Начать игру?");
+        System.out.println("Start a new game?");
         String answer = ask();
 
-        if (answer.equals("Нет")){
+        if (answer.equals("No")) {
             System.exit(0);
-        } else if (answer.equals("Да")) {
+        } else if (answer.equals("Yes")) {
 
             do {
 
@@ -25,14 +26,14 @@ public class Main {
 
                 for (int i = 1; i < 11; i++) {
                     System.out.println("Попытка #" + i);
-                    int userNum = scan.nextInt();
+                    int userNum = askNum();
 
                     if (userNum > myNum) {
-                        System.out.println("Много!");
+                        System.out.println("Too much!");
                     } else if (userNum < myNum) {
-                        System.out.println("Мало!");
+                        System.out.println("Too little!");
                     } else {
-                        System.out.println("Угадал!");
+                        System.out.println("You've guessed my number!");
                         userLost = false;
                         userWin = true;
                         break;
@@ -40,25 +41,43 @@ public class Main {
                 }
 
                 if (userLost) {
-                    System.out.println("Попробовать еще раз?");
+                    System.out.println("Try again?");
                     answer = ask();
                 }
 
                 if (userWin) {
-                    System.out.println("Играть еще раз?");
+                    System.out.println("Play again?");
                     answer = ask();
                 }
 
-            } while (answer.equals("Да"));
+            } while (answer.equals("Yes"));
         }
     }
 
-    static String ask(){
+    static String ask() {
         String answer;
         do {
-            System.out.println("Да или Нет");
+            System.out.println("Yes or No");
             answer = scan.next();
-        } while (!answer.equals("Да") && !answer.equals("Нет"));
+        } while (!answer.equals("Yes") && !answer.equals("No"));
         return answer;
+    }
+
+    static int askNum() {
+        int answer;
+        do {
+            try {
+                answer = scan.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Only numbers!");
+                scan.next();
+                continue;
+            }
+            if (answer < 1 || answer > 100) {
+                System.out.println("Only numbers between 1 - 100");
+            } else {
+                return answer;
+            }
+        } while (true);
     }
 }
