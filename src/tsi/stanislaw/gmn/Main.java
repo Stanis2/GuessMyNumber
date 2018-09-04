@@ -50,9 +50,6 @@ public class Main {
                 }
 
             } while (answer.equals("Да"));
-        } else {
-            System.out.println("Ошибка ввода!");
-            System.exit(0);
         }
     }
 
